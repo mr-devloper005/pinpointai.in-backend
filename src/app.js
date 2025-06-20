@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://pinpointaii.vercel.app",
     credentials: true,
   })
 );
