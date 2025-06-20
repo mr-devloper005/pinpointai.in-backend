@@ -87,9 +87,9 @@ const googleOAuth = async (req, res, next) => {
 
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // true only in prod
-      sameSite: "Lax",
-      maxAge: 3600000,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "None", // ← this is important for cross-origin
+      maxAge: 360000000,
     });
 
     res
