@@ -20,9 +20,9 @@ import { OAuth2Client } from "google-auth-library";
 
 const options = {
   httpOnly: true,
-  secure: process.env.NODE_ENV === "production", // true only in prod
-  sameSite: "Lax", // 🔄 for local dev testing
-  maxAge: 3600000,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: "None", // ← this is important for cross-origin
+  maxAge: 360000000,
 };
 
 const generateAccessTokenAndRefreshToken = async (userId) => {
