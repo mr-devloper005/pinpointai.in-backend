@@ -24,10 +24,6 @@ app.use(
   })
 );
 
-// app.use((req, res) => {
-//   res.send("hello your backend successfully running ");
-// });
-
 import router from "./routes/user.routes.js";
 
 app.use("/api/auth", router);
