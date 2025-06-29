@@ -18,10 +18,17 @@ import { OAuth2Client } from "google-auth-library";
 //   sameSite: "None",
 // });
 
+// const options = {
+//   httpOnly: true,
+//   secure: process.env.NODE_ENV === "production",
+//   sameSite: "None",
+//   maxAge: 360000000,
+// };
 const options = {
   httpOnly: true,
-  secure: process.env.NODE_ENV === "production",
+  secure: true,
   sameSite: "None",
+  path: "/",
   maxAge: 360000000,
 };
 
