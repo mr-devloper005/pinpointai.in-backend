@@ -21,7 +21,7 @@ import { OAuth2Client } from "google-auth-library";
 const options = {
   httpOnly: true,
   secure: process.env.NODE_ENV === "production",
-  sameSite: "None", // ← this is important for cross-origin
+  sameSite: "None",
   maxAge: 360000000,
 };
 
@@ -88,7 +88,7 @@ const googleOAuth = async (req, res, next) => {
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "None", // ← this is important for cross-origin
+      sameSite: "None",
       maxAge: 360000000,
     });
 
@@ -96,7 +96,6 @@ const googleOAuth = async (req, res, next) => {
       .status(201)
       .json(new ApiResponse(201, user, "User logged in SuccessFully"));
   } catch (error) {
-    // throw new ApiError(401);
     return next(error);
   }
 };
@@ -267,4 +266,40 @@ const logoutUser = async (req, res) => {
   } catch (error) {}
 };
 
-export { googleOAuth, registerUser, loginuser, refreshAccessToken, logoutUser };
+const isLoggedIn = async (req, res) => {
+  console.log("checking the login thunk");
+
+  try {
+    res.status(200).json({
+      success: true,
+      user: req.user,
+    });
+  } catch (error) {
+    res.status(401).json(new ApiError(401, "user Not loggedin", error));
+  }
+};
+
+const logout = async (req, res) => {
+  try {
+    res
+      .clearCookie("accessToken", options)
+      .clearCookie("refreshToken", options)
+      .status(200)
+      .json({
+        success: true,
+        message: "User logged out successfully",
+      });
+  } catch (error) {
+    res.status(401).json(new ApiError(401, "something went wrong in logout"));
+  }
+};
+
+export {
+  googleOAuth,
+  registerUser,
+  loginuser,
+  refreshAccessToken,
+  logoutUser,
+  isLoggedIn,
+  logout,
+};

@@ -32,6 +32,4 @@ import routerTwo from "./routes/chat.routes.js";
 
 app.use("/api", routerTwo);
 
-// http://localhost:8000/api/auth/googleauth
-
 export default app;
