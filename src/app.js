@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: "https://pinpointaii.vercel.app",
+    origin: "https://pinpointai.vercel.app",
     credentials: true,
   })
 );
