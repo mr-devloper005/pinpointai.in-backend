@@ -18,6 +18,6 @@ router.route("/loginuser").post(loginuser);
 router.route("/refresh-access-token").post(refreshAccessToken);
 router.route("/logout-user").post(verifyJwt, logoutUser);
 router.route("/isLoggedIn").get(verifyJwt, isLoggedIn);
-router.route("/logout").post(logoutUser);
+router.route("/logout").post(logout);
 
 export default router;
