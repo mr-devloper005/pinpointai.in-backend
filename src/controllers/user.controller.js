@@ -253,7 +253,7 @@ const logoutUser = async (req, res) => {
       req.user._id,
       {
         $set: {
-          refreshToken: undefined,
+          refreshToken: 1,
         },
       },
       {
@@ -261,14 +261,9 @@ const logoutUser = async (req, res) => {
       }
     );
 
-    const options = {
-      httpOnly: true,
-      secure: true,
-    };
-
     res
       .clearCookie("accessToken", options)
-      .clearCookie("refreshToken")
+      .clearCookie("refreshToken", options)
       .json(new ApiResponse(201, "user logout successfully"));
   } catch (error) {}
 };
