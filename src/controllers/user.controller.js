@@ -7,23 +7,6 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { OAuth2Client } from "google-auth-library";
 
-// const options = {
-//   httpOnly: true,
-//   secure: true,
-// };
-
-// res.cookie("token", token, {
-//   httpOnly: true,
-//   secure: true, // ✅ MUST for SameSite: 'None'
-//   sameSite: "None",
-// });
-
-// const options = {
-//   httpOnly: true,
-//   secure: process.env.NODE_ENV === "production",
-//   sameSite: "None",
-//   maxAge: 360000000,
-// };
 const options = {
   httpOnly: true,
   secure: true,
@@ -281,7 +264,7 @@ const isLoggedIn = async (req, res) => {
   }
 };
 
-const logout = async (req, res) => {
+const logout = async (_, res) => {
   try {
     res
       .clearCookie("accessToken", options)
